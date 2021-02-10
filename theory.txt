@@ -1,0 +1,13 @@
+So there will be a universe(area in 2d).
+There will generate instances of people class(persons) as points on that 2d area.
+At each point, after a fixed time interval, there'll be a random intensity(in an interval) supplied called as launching force.
+They(Persons) will have 3 data:
+    1. LR(Launching Resistence): This will be the resistance the point will provide to launching forces and then will head in random direction available and its position will change(so this tells we'll have to give other data to those points once they're generated so that changing their coords don't make data loss b/w their identity.
+    2. IM(Intake Magnitude): How much they accept stuffs(power expressed in numerics).
+    3. OM(Outgiving Magnitude): How much they give stuffs to others.
+    (HERE giving and accepting stuffs means releasing a bond signal to others and accepting the generated bond signal(all this bonding will be valid in a fixed universal radius circle around each player as center)).
+
+Now we've to graph stuffs or may be not. We just have to generate them and have to note down how they behaved. We'll tag them after bonding sessions as introvert, extroverts, and normal persons(I think that can be all alone decided by 2nd and 3rd data. OHHH NO. That can't. It also depends on luck whether that point got good chances to meet people or not).
+
+Other ideas:
+1. We can then in the next step of project, add stuffs like one person introducing a subset of his relations.
