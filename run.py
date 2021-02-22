@@ -1,12 +1,14 @@
 import random
 from numpy.random import choice
 from termcolor import colored
+import time
 
 universe = (-10, 10)
-launch_int = (5,7)
+launch_int_range = (5,7)
 people_rad = 3
-num_persons = 10
+population = 25
 frames_num = 10
+
 
 class people:
     def __init__(self, x, y, lr, im, om, identity):
@@ -37,10 +39,10 @@ randrange(start, stop=None, step=1, _int=<class 'int'>) method of random.Random 
 """
 def generate_persons():
     return [people(random.randrange(*universe), random.randrange(*universe), random.randrange(0,5), 
-            round(random.random(), 2), round(random.random(), 2), i+1) for i in range(num_persons)]
+            round(random.random(), 2), round(random.random(), 2), i+1) for i in range(population)]
 
 def launch_person(person_list):
-    launch_mag = random.randint(*launch_int)
+    launch_mag = random.randint(*launch_int_range)
     for person in person_list:
         net = launch_mag - person.lr
         random_ax = random.randint(0,1) #0 for x, 1 for y axis
@@ -107,9 +109,23 @@ def intake(person_list):
                         else:
                             neighb.friends[person.id] += 1
                             person.friends[neighb.id] += 1
-        
+
+def anim_write(*string, t = 0.02):
+    "AnimationWriter:- Prints iterable in fashion"
+    for i in string:
+        for j in i:
+            print(j, end = '', flush = True)
+            time.sleep(t)
+        print('')
+        time.sleep(0.02)
 
 if __name__ == "__main__":
+    anim_write(f"universe: Square with {universe[1] - universe[0]} unit sized edges.",
+    f"launching range: {launch_int_range}",
+    f"radius of reach of people: {people_rad} units",
+    f"population: {population}",
+    f"frames' number for socialization: {frames_num}",t = 0.07)
+    
     for i in range(frames_num+1):
         if not i: person_list = generate_persons()
         else: launch_person(person_list)#generates lr and launches points to new coords
@@ -123,7 +139,7 @@ if __name__ == "__main__":
             indentation = " "*4
             if person.im < person.om:
                 print(indentation+"person is genetically "+ colored("extrovert", "green"))
-            else: print(indentation+"person is genetically "+ colored("introvert","green"))
+            else: print(indentation+"person is genetically "+ colored("introvert","blue"))
             print(indentation+f"coords: {person.get_coords()}")
             print(indentation+f"person_friends: {person.friends}")
             print(indentation+f"old_coords: {person.old_coords}")
